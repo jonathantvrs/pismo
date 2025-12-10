@@ -50,8 +50,8 @@ A forma mais simples e recomendada é utilizando o **Docker Compose**, que sobe 
 
 1. **Clone o repositório e entre na pasta:**
    ```bash
-   git clone <repo-url>
-   cd transactions-api
+   git clone https://github.com/jonathantvrs/pismo.git
+   cd pismo
    ```
    
 2. **Construa e suba os containers:**
