@@ -1,0 +1,39 @@
+version: '3.8'
+
+services:
+  app:
+    build: .
+    container_name: pismo-app
+    ports:
+      - "8080:8080"
+    environment:
+      - DB_HOST=db
+      - DB_NAME=pismo_db
+      - DB_USER=pismo_user
+      - DB_PASSWORD=pismo_pass
+    depends_on:
+      - db
+    networks:
+      - pismo-network
+    restart: on-failure
+
+  db:
+    image: postgres:16-alpine
+    container_name: pismo-postgres
+    environment:
+      - POSTGRES_DB=pismo_db
+      - POSTGRES_USER=pismo_user
+      - POSTGRES_PASSWORD=pismo_pass
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - pismo-network
+
+networks:
+  pismo-network:
+    driver: bridge
+
+volumes:
+  postgres_data:
